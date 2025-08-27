@@ -17,13 +17,19 @@ async function fetchTasks(){
             });
 
             const updateTaskButton = document.createElement("button");
+            const currentTaskId = document.getElementById("currentTaskId");
             updateTaskButton.textContent = "Actualizar tarea";
             updateTaskButton.addEventListener("click", () => {
+                console.log(`Actualizando la tarea ${task.id}`);
                 document.getElementById('editTaskForm').hidden = false;
+                currentTaskId.textContent = task.id;
 
             });
 
-            
+            const cancelButton = document.getElementById("cancelEdit");
+            cancelButton.addEventListener("click", () => {
+                document.getElementById('editTaskForm').hidden = true;
+            });
 
             li.appendChild(deleteButton);
             li.appendChild(updateTaskButton);
