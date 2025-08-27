@@ -26,6 +26,14 @@ async function fetchTasks(){
 
             });
 
+            const confirmEditButton = document.getElementById("confirmEditTaskButton");
+            confirmEditButton.addEventListener("click", event => {
+                event.preventDefault();
+                const editTitle = document.getElementById("editTitle").value;
+                const editDescription = document.getElementById("editDescription").value;
+                updateTask(task.id, { title: editTitle, description: editDescription });
+            });
+
             const cancelButton = document.getElementById("cancelEdit");
             cancelButton.addEventListener("click", () => {
                 document.getElementById('editTaskForm').hidden = true;
@@ -76,6 +84,26 @@ async function deleteTask(id){
 
     } catch (error) {
         console.error("Error deleting task:", error);
+    }
+}
+
+async function updateTask(id, updatedData){
+    try{
+
+        const response = await fetch(`${API_URL}/${id}`, {
+            method : "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(updatedData)
+        });
+
+        if (response.ok) {
+            fetchTasks();
+        }
+
+    } catch (error) {
+        console.error("Error updating task:", error);
     }
 }
 
