@@ -19,13 +19,13 @@ async function fetchTasks() {
             li.textContent = `${task.title}: ${task.description}`;
 
             const deleteButton = document.createElement("button");
-            deleteButton.textContent = "Eliminar tarea";
+            deleteButton.textContent = "delete task";
             deleteButton.addEventListener("click", () => {
                 deleteTask(task.id);
             });
 
             const updateTaskButton = document.createElement("button");
-            updateTaskButton.textContent = "Actualizar tarea";
+            updateTaskButton.textContent = "update task";
             updateTaskButton.addEventListener("click", () => {
                 // Rellenar el formulario de edición y mostrarlo
                 editTaskForm.hidden = false;
